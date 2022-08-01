@@ -1,0 +1,23 @@
+pipeline {
+
+agent any 
+
+stages {
+
+stage('cloning git') {
+    steps {
+      git branch: 'main', credentialsId: 'Github_id', url: 'https://github.com/reshmababu/Jenkins_demo.git' 
+    }
+  }
+
+stage ('deploying in k8s cluster') {
+    steps {
+      script {
+         kubernetesDeploy(configs: "deployment.yaml" , kubeconfigId: "kubeconfig")
+	}
+	}
+	}
+	}
+	}
+
+
